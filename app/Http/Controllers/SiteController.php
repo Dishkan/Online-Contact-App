@@ -123,7 +123,10 @@ class SiteController extends Controller
 		$this->content = view('contacts.search')->with(['contacts' => $contacts, 'q' => $q])
 		->withDetails($contacts)->withQuery ($q)->render();
 		}
-		
+	else {
+	
+    $this->content = view( 'contacts.search_notfound' )->withQuery($q)->withMessage ( 'No Details found. Try to search again !' );
+		}
 	
      return $this->renderOutput();
     }
