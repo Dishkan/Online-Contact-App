@@ -34,7 +34,15 @@ class ContactsRepository extends Repository {
 	
 	public function updateContact($request, $contact) {
 		
-		$data = $request->all();
+		$data = $request->all();	
+			
+			$validator = Validator::make($data,[
+			
+				'name'=>'unique:contacts,name,'.$contact,
+				'number' => 'unique:contacts,number,'.$contact,
+				'email' => 'unique:contacts,email,'.$contact
+			
+			]);
 		
 		$contact->fill($data)->update();
 				
