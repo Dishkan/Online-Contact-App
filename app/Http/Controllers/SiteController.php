@@ -156,7 +156,7 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContactsRequest $request, Contact $contact)
+    public function update(Request $request, Contact $contact)
     {
         //
         $result = $this->c_rep->updateContact($request, $contact);
