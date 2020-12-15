@@ -7,6 +7,7 @@ use App\Repositories\ContactsRepository;
 use App\Models\Contact;
 use Illuminate\Support\Arr;
 use App\Http\Requests\ContactsRequest;
+use Validator;
 
 
 class SiteController extends Controller
@@ -158,15 +159,8 @@ class SiteController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
-        $result = $this->c_rep->updateContact($request, $contact);
-		
-		if(is_array($result) && !empty($result['error'])) {
-			return back()->with($result);
-		}
-		
-		return redirect('/main')->with($result);
-        
+        return $this->c_rep->updateContact($request, $contact);
+		      
     }
 
     /**
