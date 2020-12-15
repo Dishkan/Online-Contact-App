@@ -21,7 +21,7 @@ class SiteController extends Controller
 	    
     protected $title;
     
-    protected $vars;
+    protected $vars; 
 
      public function __construct(ContactsRepository $c_rep) {
 		
