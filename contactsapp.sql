@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 13 2020 г., 15:46
+-- Время создания: Дек 15 2020 г., 09:22
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.5
 
@@ -43,11 +43,11 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `number`, `second_number`, `email`, `second_email`, `created_at`, `updated_at`) VALUES
-(1, 'Elon Musk', 998915556565, 998915556560, 'elonmusk@gmail.com', 'elonmusk2@gmail.com', '2020-12-10 11:31:49', '2020-12-10 11:31:54'),
-(39, 'Mark Zuckerberg', 998917455555, 998917455554, 'mark@gmail.com', 'mark2@gmail.com', '2020-12-13 06:42:33', '2020-12-13 06:42:33'),
-(40, 'Bill Gates', 998996552523, 998996552522, 'billgates@gmail.com', 'billgates2@gmail.com', '2020-12-13 06:43:58', '2020-12-13 06:43:58'),
-(41, 'Pavel Durov', 998914665352, 998914665351, 'durov@gmail.com', 'durov2@gmail.com', '2020-12-13 06:44:51', '2020-12-13 06:44:51'),
-(42, 'Dishkan Khudoyarov', 998998889999, NULL, 'blablabla@gmail.com', NULL, '2020-12-13 06:51:17', '2020-12-13 06:51:17');
+(1, 'Elon Musk', 998915556565, 998915556560, 'elonmusk@gmail.com', 'elonmusk2@gmail.com', '2020-12-10 11:31:49', '2020-12-15 00:26:16'),
+(39, 'Mark Zuckerberg', 998917455555, 998917455554, 'mark@gmail.com', 'mark2@gmail.com', '2020-12-13 06:42:33', '2020-12-15 01:05:08'),
+(40, 'Bill Gates', 998996552523, 998996552522, 'billgates@gmail.com', 'billgates2@gmail.com', '2020-12-13 06:43:58', '2020-12-14 11:40:12'),
+(41, 'Pavel Durov', 998914665352, 998914665351, 'durov@gmail.com', 'durov2@gmail.com', '2020-12-13 06:44:51', '2020-12-15 00:42:25'),
+(42, 'Dilshod Khudoyarov', 998998889192, NULL, 'blablabla@gmail.com', NULL, '2020-12-13 06:51:17', '2020-12-15 01:19:44');
 
 --
 -- Индексы сохранённых таблиц
@@ -60,7 +60,9 @@ ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `number` (`number`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `second_number` (`second_number`),
+  ADD UNIQUE KEY `second_email` (`second_email`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -70,7 +72,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT для таблицы `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
