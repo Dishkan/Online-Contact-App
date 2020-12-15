@@ -30,25 +30,42 @@ class ContactsRepository extends Repository {
 	
 		return $contact->delete();
 		
-	}
+	}	
 	
 	public function updateContact($request, $contact) {
+	
+		$data = $request->except('_token');
 		
-		$data = $request->all();	
-			
-			$validator = Validator::make($data,[
-			
-				'name'=>'unique:contacts,name,'.$contact,
-				'number' => 'unique:contacts,number,'.$contact,
-				'email' => 'unique:contacts,email,'.$contact
-			
-			]);
+        $validator = Validator::make($data, [
+            'name' => 'required|max:255|unique:contacts,name,'.$contact['id'],
+            'number' => array(
+			'required:max:15',
+			'regex: (998([\d]{9})$)',
+			'unique:contacts,number,'.$contact['id'],
+			),
+			'second_number' => array(
+			'nullable:max:15',
+			'regex: (998([\d]{9})$)',
+			'unique:contacts,number',
+			'unique:contacts,second_number,'.$contact['id'],
+			),
+			'email' => 'required|email|unique:contacts,email,'.$contact['id'],
+			'second_email' => array(
+			'nullable',
+			'email',
+			'unique:contacts,email',
+			'unique:contacts,second_email,'.$contact['id'],
+			),
+          ]);
+	
+        if ($validator->fails()) {
+        return back()->with($data)->withErrors($validator);
+      }
 		
-		$contact->fill($data)->update();
-				
+	    $contact->fill($data)->update();
+	
+	   return redirect('/main')->with($data);
 	}
-	
-	
 
 }
 
